@@ -1,16 +1,20 @@
 import { lucia } from '$lib/server/auth';
-import type { Handle } from '@sveltejs/kit';
-import { createContext } from '$lib/trpc/context';
-import { router } from '$lib/trpc/router';
+import { redirect, type Handle } from '@sveltejs/kit';
+import { createContext } from '$lib/server/trpc/context';
 import { createTRPCHandle } from 'trpc-sveltekit';
 import { sequence } from '@sveltejs/kit/hooks';
+import { appRouter } from '$lib/server/trpc/router';
 
-export const trpcHandle: Handle = createTRPCHandle({ router, createContext });
+export const trpcHandle: Handle = createTRPCHandle({ router: appRouter, createContext });
+
 export const sessionHandle: Handle = async ({ event, resolve }) => {
 	const sessionId = event.cookies.get(lucia.sessionCookieName);
 	if (!sessionId) {
 		event.locals.user = null;
 		event.locals.session = null;
+		if (event.url.pathname !== '/signin' && event.url.pathname !== '/signup') {
+			redirect(307, '/signin');
+		}
 		return resolve(event);
 	}
 
