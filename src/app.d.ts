@@ -9,8 +9,9 @@ declare global {
 			user: import('lucia').User | null;
 			session: import('lucia').Session | null;
 		}
-		// interface PageData {}
-		// interface PageState {}
+		interface PageData {
+			flash?: { type: 'success' | 'error'; message: string; redirect?: string };
+		} // interface PageState {}
 		// interface Platform {}
 	}
 }
