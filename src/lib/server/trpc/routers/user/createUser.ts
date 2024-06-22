@@ -21,7 +21,7 @@ export const createUser = publicFormProcedure.input(schema).mutation(async ({ in
 			setError(ctx.form!, 'email', 'Este e-mail já está cadastrado');
 			return fail(400, { form: ctx.form });
 		}
-	} catch (error) {
+	} catch (_) {
 		return messageDatabaseQueryError(ctx);
 	}
 
@@ -39,7 +39,7 @@ export const createUser = publicFormProcedure.input(schema).mutation(async ({ in
 		);
 
 		return { form: ctx.form };
-	} catch (error) {
+	} catch (_) {
 		return messageDatabaseMutationError(ctx);
 	}
 });

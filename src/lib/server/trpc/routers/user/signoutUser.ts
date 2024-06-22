@@ -1,5 +1,5 @@
 import { lucia } from '$lib/server/auth';
-import { redirect, setFlash } from 'sveltekit-flash-message/server';
+import { setFlash } from 'sveltekit-flash-message/server';
 import { authProcedure } from '../../t';
 
 export const signoutUser = authProcedure.mutation(async ({ ctx }) => {

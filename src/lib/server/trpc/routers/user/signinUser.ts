@@ -18,7 +18,7 @@ export const signinUser = publicFormProcedure.input(schema).mutation(async ({ in
 			columns: { email: true, password: true, id: true, name: true },
 			where: (users, { eq }) => eq(users.email, input.email)
 		});
-	} catch (error) {
+	} catch (_) {
 		return messageDatabaseQueryError(ctx);
 	}
 
@@ -45,7 +45,7 @@ export const signinUser = publicFormProcedure.input(schema).mutation(async ({ in
 		ctx.event.cookies.set(cookie.name, cookie.value, { ...cookie.attributes, path: '/' });
 
 		return { form: ctx.form };
-	} catch (error) {
+	} catch (_) {
 		setFlash(
 			{ type: 'error', message: 'Erro ao criar sessão, tente novamente mais tarde' },
 			ctx.event.cookies
