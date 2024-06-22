@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { trpc } from '$lib/trpc/client';
-
+	import PhAcorn from '~icons/ph/acorn';
 	let greeting = 'press the button to load data';
 	let loading = false;
 
@@ -11,6 +11,8 @@
 		loading = false;
 	};
 </script>
+
+<PhAcorn />
 
 <a
 	href="#load"
