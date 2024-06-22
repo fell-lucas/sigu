@@ -18,7 +18,7 @@ export const createUser = publicFormProcedure.input(schema).mutation(async ({ in
 		});
 
 		if (duplicateEmail) {
-			setError(ctx.form!, 'email', 'Este e-mail já está cadastrado.');
+			setError(ctx.form!, 'email', 'Este e-mail já está cadastrado');
 			return fail(400, { form: ctx.form });
 		}
 	} catch (error) {

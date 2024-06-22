@@ -29,7 +29,7 @@
 
 <Toast />
 
-<div class="mx-auto mt-8 flex w-full max-w-screen-lg flex-col items-center justify-center">
+<div class="flex h-full flex-1 flex-col px-6">
 	<slot></slot>
 </div>
 
