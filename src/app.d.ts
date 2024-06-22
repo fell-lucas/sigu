@@ -11,8 +11,18 @@ declare global {
 		}
 		interface PageData {
 			flash?: { type: 'success' | 'error'; message: string; redirect?: string };
+			session?: import('lucia').Session;
 		} // interface PageState {}
 		// interface Platform {}
+	}
+}
+
+declare module 'lucia' {
+	interface Register {
+		DatabaseSessionAttributes: {
+			name: string;
+			email: string;
+		};
 	}
 }
 

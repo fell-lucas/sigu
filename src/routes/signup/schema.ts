@@ -6,7 +6,7 @@ export const schema = z
 		name: base.strings.short,
 		email: base.strings.email,
 		password: base.strings.password,
-		cpassword: z.string()
+		cpassword: base.strings.short
 	})
 	.superRefine(({ cpassword, password }, ctx) => {
 		if (cpassword !== password) {

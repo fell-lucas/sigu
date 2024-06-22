@@ -19,5 +19,7 @@ export const sessionTable = sqliteTable('session', {
 	userId: text('user_id')
 		.notNull()
 		.references(() => userTable.id),
+	name: text('name').notNull(),
+	email: text('email').notNull(),
 	expiresAt: integer('expires_at').notNull()
 });

@@ -16,6 +16,7 @@ export const db = drizzle(client, { schema });
 const luciaAdapter = new DrizzleSQLiteAdapter(db, schema.sessionTable, schema.userTable);
 
 export const lucia = new Lucia(luciaAdapter, {
+	getSessionAttributes: (session) => session,
 	sessionCookie: {
 		attributes: {
 			// set to `true` when using HTTPS

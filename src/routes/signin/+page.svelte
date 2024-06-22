@@ -1,19 +1,21 @@
 <script lang="ts">
+	import FormErrors from '$lib/components/form/FormErrors.svelte';
 	import { focusTrap } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms';
 
 	export let data;
 
-	const { form } = superForm(data.form);
+	const { form, errors, enhance } = superForm(data.form);
 </script>
 
 <h2 class="h2">Entre no SIGU</h2>
 <p>Faça seu login para usar a plataforma e gerenciar suas atividades acadêmicas.</p>
 
-<form use:focusTrap={true} class="mt-8 flex flex-col gap-4" method="POST">
+<form use:enhance use:focusTrap={true} class="mt-8 flex flex-col gap-4" method="POST">
 	<label class="label" for="email">
 		<span>E-mail</span>
 		<input class="input" type="email" id="email" name="email" bind:value={$form.email} />
+		<FormErrors errors={$errors.email} />
 	</label>
 
 	<label for="password">
@@ -25,6 +27,7 @@
 			name="password"
 			bind:value={$form.password}
 		/>
+		<FormErrors errors={$errors.password} />
 	</label>
 
 	<button class="variant-filled-primary btn">Enviar</button>

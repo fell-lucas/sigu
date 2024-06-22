@@ -4,8 +4,13 @@ import type { Actions } from './$types';
 import { schema } from './schema';
 import { createCaller } from '$lib/server/trpc/router';
 import { createContext } from '$lib/server/trpc/context';
+import { redirect } from '@sveltejs/kit';
 
-export const load = async () => {
+export const load = async (event) => {
+	if (event.locals.session) {
+		return redirect(303, '/');
+	}
+
 	const form = await superValidate(zod(schema));
 
 	return { form };
@@ -21,12 +26,6 @@ export const actions: Actions = {
 
 		const caller = createCaller(await createContext(event, form));
 
-		try {
-			return await caller.user.create(form.data);
-		} catch (error) {
-			console.log(error);
-
-			throw error;
-		}
+		return await caller.user.create(form.data);
 	}
 };
