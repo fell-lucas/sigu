@@ -27,12 +27,16 @@
 		<!-- --- -->
 		<svelte:fragment slot="trail">
 			<AppRailAnchor href="/" title="Minha conta">
-				<svelte:fragment slot="lead"><PhUserCircleGear /></svelte:fragment>
+				<svelte:fragment slot="lead">
+					<PhUserCircleGear />
+				</svelte:fragment>
 				{$page.data.session?.name}
 			</AppRailAnchor>
 			<form action="?/signout" method="POST">
 				<AppRailTile bind:group={currentTile} name="signout" value={3} title="Sair">
-					<svelte:fragment slot="lead"><PhSignOut class="w-full" /></svelte:fragment>
+					<svelte:fragment slot="lead">
+						<PhSignOut class="w-full" />
+					</svelte:fragment>
 					<span>Sair</span>
 				</AppRailTile>
 			</form>
