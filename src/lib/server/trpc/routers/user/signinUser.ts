@@ -15,7 +15,7 @@ export const signinUser = publicFormProcedure.input(schema).mutation(async ({ in
 	let existingUser;
 	try {
 		existingUser = await db.query.userTable.findFirst({
-			columns: { email: true, password: true, id: true, name: true },
+			columns: { email: true, password: true, id: true, name: true, role: true },
 			where: (users, { eq }) => eq(users.email, input.email)
 		});
 	} catch (_) {
@@ -38,7 +38,8 @@ export const signinUser = publicFormProcedure.input(schema).mutation(async ({ in
 	try {
 		newSession = await lucia.createSession(existingUser.id, {
 			email: existingUser.email,
-			name: existingUser.name
+			name: existingUser.name,
+			role: existingUser.role
 		});
 
 		const cookie = lucia.createSessionCookie(newSession.id);

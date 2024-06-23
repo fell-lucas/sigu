@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { FormErrors } from '$lib/components/form';
+	import { UserRole } from '$lib/db-enums';
 	import { ProgressBar, focusTrap } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms';
 
@@ -22,6 +23,16 @@
 		<span>E-mail</span>
 		<input class="input" type="email" id="email" name="email" bind:value={$form.email} />
 		<FormErrors errors={$errors.email} />
+	</label>
+
+	<label class="label" for="role">
+		<span>Função</span>
+		<select class="input" id="role" name="role" bind:value={$form.role}>
+			<option value={UserRole.STUDENT}>Estudante</option>
+			<option value={UserRole.PROFESSOR}>Professor</option>
+			<option value={UserRole.ADMIN}>Administrador</option>
+		</select>
+		<FormErrors errors={$errors.role} />
 	</label>
 
 	<label for="password">

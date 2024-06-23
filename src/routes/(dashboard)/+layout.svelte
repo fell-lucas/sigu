@@ -42,8 +42,8 @@
 				</svelte:fragment>
 				<span>Conta</span>
 			</AppRailAnchor>
-			<form action="?/signout" method="POST">
-				<AppRailTile group={0} name="signout" value={null} title="Sair">
+			<form action="/?/signout" method="POST">
+				<AppRailTile group={0} name="signout" value={1} title="Sair">
 					<svelte:fragment slot="lead">
 						<PhSignOut class="w-full" />
 					</svelte:fragment>

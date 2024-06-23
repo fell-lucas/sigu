@@ -30,7 +30,8 @@ export const createUser = publicFormProcedure.input(schema).mutation(async ({ in
 			email: input.email,
 			id: userId,
 			name: input.name,
-			password: await hashPassword(input.password)
+			password: await hashPassword(input.password),
+			role: input.role
 		});
 
 		setFlash(
