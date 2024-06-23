@@ -1,6 +1,6 @@
 import { hashPassword } from '$lib/server/utils';
 import { ulid } from 'ulidx';
-import { schema } from '../../../../../routes/signup/schema';
+import { schema } from '../../../../../routes/(auth)/signup/schema';
 import { db } from '$lib/server/auth';
 import { messageDatabaseMutationError, messageDatabaseQueryError } from '$lib/server/exceptions';
 import { userTable } from '$lib/server/db/schema';

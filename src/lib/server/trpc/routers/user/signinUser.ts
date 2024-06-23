@@ -3,7 +3,7 @@ import { messageDatabaseQueryError } from '$lib/server/exceptions';
 import { comparePassword } from '$lib/server/utils';
 import { setFlash } from 'sveltekit-flash-message/server';
 import { fail, setError } from 'sveltekit-superforms';
-import { schema } from '../../../../../routes/signin/schema';
+import { schema } from '../../../../../routes/(auth)/signin/schema';
 import { publicFormProcedure } from '../../t';
 
 export const signinUser = publicFormProcedure.input(schema).mutation(async ({ input, ctx }) => {
