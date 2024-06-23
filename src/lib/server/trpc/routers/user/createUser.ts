@@ -1,6 +1,6 @@
 import { hashPassword } from '$lib/server/utils';
 import { ulid } from 'ulidx';
-import { schema } from '../../../../../routes/signup/schema';
+import { schema } from '../../../../../routes/(auth)/signup/schema';
 import { db } from '$lib/server/auth';
 import { messageDatabaseMutationError, messageDatabaseQueryError } from '$lib/server/exceptions';
 import { userTable } from '$lib/server/db/schema';
@@ -30,7 +30,8 @@ export const createUser = publicFormProcedure.input(schema).mutation(async ({ in
 			email: input.email,
 			id: userId,
 			name: input.name,
-			password: await hashPassword(input.password)
+			password: await hashPassword(input.password),
+			role: input.role
 		});
 
 		setFlash(

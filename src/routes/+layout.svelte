@@ -29,8 +29,6 @@
 
 <Toast />
 
-<div class="flex h-full flex-1 flex-col px-6">
+<div class="flex h-full flex-1 flex-col">
 	<slot></slot>
 </div>
-
-<style></style>

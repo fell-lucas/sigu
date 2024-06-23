@@ -22,6 +22,7 @@ declare module 'lucia' {
 		DatabaseSessionAttributes: {
 			name: string;
 			email: string;
+			role: keyof import('$lib/server/db/schema').UserRole;
 		};
 	}
 }

@@ -11,7 +11,7 @@ export const load = async (event) => {
 		return redirect(303, '/');
 	}
 
-	const form = await superValidate(zod(schema));
+	const form = await superValidate({ role: 'STUDENT' }, zod(schema), { errors: false });
 
 	return { form };
 };

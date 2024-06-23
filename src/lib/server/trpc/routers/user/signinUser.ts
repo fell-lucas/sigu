@@ -3,7 +3,7 @@ import { messageDatabaseQueryError } from '$lib/server/exceptions';
 import { comparePassword } from '$lib/server/utils';
 import { setFlash } from 'sveltekit-flash-message/server';
 import { fail, setError } from 'sveltekit-superforms';
-import { schema } from '../../../../../routes/signin/schema';
+import { schema } from '../../../../../routes/(auth)/signin/schema';
 import { publicFormProcedure } from '../../t';
 
 export const signinUser = publicFormProcedure.input(schema).mutation(async ({ input, ctx }) => {
@@ -15,7 +15,7 @@ export const signinUser = publicFormProcedure.input(schema).mutation(async ({ in
 	let existingUser;
 	try {
 		existingUser = await db.query.userTable.findFirst({
-			columns: { email: true, password: true, id: true, name: true },
+			columns: { email: true, password: true, id: true, name: true, role: true },
 			where: (users, { eq }) => eq(users.email, input.email)
 		});
 	} catch (_) {
@@ -38,7 +38,8 @@ export const signinUser = publicFormProcedure.input(schema).mutation(async ({ in
 	try {
 		newSession = await lucia.createSession(existingUser.id, {
 			email: existingUser.email,
-			name: existingUser.name
+			name: existingUser.name,
+			role: existingUser.role
 		});
 
 		const cookie = lucia.createSessionCookie(newSession.id);
