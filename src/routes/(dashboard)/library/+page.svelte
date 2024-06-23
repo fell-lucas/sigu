@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { AppBar } from '@skeletonlabs/skeleton';
 </script>
 
 <AppBar>
 	<svelte:fragment slot="headline">
-		<h3 class="h3 max-w-xs truncate text-ellipsis">
-			Bem vindo, {$page.data.session?.name}
-		</h3>
+		<h3 class="h3 w-full">Biblioteca</h3>
 	</svelte:fragment>
 </AppBar>
