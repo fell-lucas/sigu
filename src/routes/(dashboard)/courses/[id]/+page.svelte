@@ -30,7 +30,7 @@
 		<header class="h3 card-header text-center">{data.course.name}</header>
 		<hr class="mt-3 !border-t-2" />
 		<section class="variant-soft flex flex-row items-center p-4">
-			<PhUserBold class="" />
+			<PhUserBold />
 			{data.course.professorName}
 		</section>
 		<Section title="Descrição">
