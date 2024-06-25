@@ -16,7 +16,7 @@
 	<svelte:fragment slot="headline">
 		<div class="flex w-full justify-between">
 			<h3 class="h3">Cursos</h3>
-			{#if $page.url.pathname === '/courses' &&  data.role === 'ADMIN'}
+			{#if data.role === 'ADMIN'}
 				<button type="button" class="variant-filled btn" on:click={gotoCoursesNew}>
 					<span><PhPlus class="w-full" /></span>
 					<span>Novo Curso</span>
