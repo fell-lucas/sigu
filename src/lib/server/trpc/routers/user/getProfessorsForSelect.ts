@@ -1,6 +1,6 @@
 import { db } from '$lib/server/auth';
+import { setFlash } from 'sveltekit-flash-message/server';
 import { publicProcedure } from '../../t';
-import { messageDatabaseQueryError } from '$lib/server/exceptions';
 
 export const getProfessorsForSelect = publicProcedure.query(async ({ ctx }) => {
 	try {
@@ -11,6 +11,10 @@ export const getProfessorsForSelect = publicProcedure.query(async ({ ctx }) => {
 
 		return professors;
 	} catch (_) {
-		return messageDatabaseQueryError(ctx);
+		setFlash(
+			{ type: 'error', message: 'Algo deu errado ao acessar o banco de dados.' },
+			ctx.event.cookies
+		);
+		return [];
 	}
 });

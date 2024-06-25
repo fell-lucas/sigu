@@ -14,18 +14,20 @@
 	let deleteConfirmation: string | null = null;
 </script>
 
-<AppBar>
-	<svelte:fragment slot="headline">
-		<div class="flex w-full justify-start gap-2">
-			<a type="button" class="items-center p-2 text-center" href="/courses">
-				<span><PhCaretLeft /></span>
-			</a>
-			<h3 class="h3">Descrição do Curso</h3>
-		</div>
-	</svelte:fragment>
-</AppBar>
+<nav class="sticky top-0">
+	<AppBar>
+		<svelte:fragment slot="headline">
+			<div class="flex w-full justify-start gap-2">
+				<a type="button" class="items-center p-2 text-center" href="/courses">
+					<span><PhCaretLeft /></span>
+				</a>
+				<h3 class="h3">Descrição do Curso</h3>
+			</div>
+		</svelte:fragment>
+	</AppBar>
+</nav>
 
-<main class="mx-auto mt-8 flex max-w-3xl flex-col">
+<main class="mx-auto my-8 flex max-w-3xl flex-col">
 	<div class="card pb-2">
 		<header class="h3 card-header text-center">{data.course.name}</header>
 		<hr class="mt-3 !border-t-2" />

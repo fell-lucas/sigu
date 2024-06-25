@@ -1,8 +1,8 @@
 import { db } from '$lib/server/auth';
 import { courseTable, userTable } from '$lib/server/db/schema';
-import { publicProcedure } from '../../t';
-import { messageDatabaseQueryError } from '$lib/server/exceptions';
 import { eq } from 'drizzle-orm';
+import { setFlash } from 'sveltekit-flash-message/server';
+import { publicProcedure } from '../../t';
 
 export const getAllCourses = publicProcedure.query(async ({ ctx }) => {
 	try {
@@ -23,6 +23,11 @@ export const getAllCourses = publicProcedure.query(async ({ ctx }) => {
 		return courses;
 	} catch (error) {
 		console.error(error);
-		return messageDatabaseQueryError(ctx);
+		setFlash(
+			{ type: 'error', message: 'Algo deu errado ao acessar o banco de dados.' },
+			ctx.event.cookies
+		);
+
+		return [];
 	}
 });
