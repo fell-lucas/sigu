@@ -21,14 +21,8 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		try {
-			const caller = createCaller(await createContext(event, form));
-			await caller.course.create(form.data);
+		const caller = createCaller(await createContext(event, form));
 
-			return { success: true, form };
-		} catch (error) {
-			console.error(error);
-			return fail(500, { form, message: 'An error occurred while creating the course' });
-		}
+		return await caller.course.create(form.data);
 	}
 };

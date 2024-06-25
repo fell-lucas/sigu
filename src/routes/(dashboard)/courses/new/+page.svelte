@@ -38,6 +38,19 @@
 			<FormErrors errors={$errors.name} />
 		</label>
 
+    <label class="label" for="description">
+      <span>Descrição do curso</span>
+      <textarea
+        class="input h-20 resize-none"
+        id="description"
+        name="description"
+        bind:value={$form.description}
+        placeholder="Digite a descrição..."
+        resi
+      ></textarea>
+      <FormErrors errors={$errors.description} />
+    </label>
+
 		<label class="label" for="slotsCount">
 			<span>Numero de vagas</span>
 			<input
