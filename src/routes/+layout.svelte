@@ -4,8 +4,20 @@
 	import '../app.css';
 	import { initializeStores, Toast } from '@skeletonlabs/skeleton';
 	import { getFlash } from 'sveltekit-flash-message';
-	import { page } from '$app/stores';
+	import { page, navigating } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import 'nprogress/nprogress.css';
+	import NProgress from 'nprogress';
+
+	NProgress.configure({
+		minimum: 0.16
+	});
+
+	$: {
+		if ($navigating) {
+			NProgress.start();
+		} else NProgress.done();
+	}
 
 	initializeStores();
 
