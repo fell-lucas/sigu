@@ -45,7 +45,6 @@
 				name="description"
 				bind:value={$form.description}
 				placeholder="Digite a descrição..."
-				resi
 			></textarea>
 			<FormErrors errors={$errors.description} />
 		</label>

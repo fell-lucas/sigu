@@ -4,10 +4,6 @@
 	import PhUserBold from '~icons/ph/user-bold';
 
 	export let data;
-
-	function gotoCoursesNew() {
-		window.location.href = '/courses/new';
-	}
 </script>
 
 <AppBar>
@@ -15,10 +11,10 @@
 		<div class="flex w-full justify-between">
 			<h3 class="h3">Cursos</h3>
 			{#if data.role === 'ADMIN'}
-				<button type="button" class="variant-filled btn" on:click={gotoCoursesNew}>
+				<a type="button" class="variant-filled btn" href="/courses/new">
 					<span><PhPlus class="w-full" /></span>
 					<span>Novo Curso</span>
-				</button>
+				</a>
 			{/if}
 		</div>
 	</svelte:fragment>
@@ -35,7 +31,10 @@
 				<p class="text-center">Nenhum curso disponível.</p>
 			{:else}
 				{#each courses as course}
-					<div class="text-toke card flex flex-col justify-between overflow-hidden shadow-xl">
+					<a
+						class="text-toke card flex flex-col justify-between overflow-hidden shadow-xl"
+						href="/courses/{course.id}"
+					>
 						<div class="space-y-4 p-4">
 							<h3 class="h3 line-clamp-1 w-4/5">{course.name}</h3>
 							<article>
@@ -64,9 +63,11 @@
 								</span>
 							</div>
 						</footer>
-					</div>
+					</a>
 				{/each}
 			{/if}
+		{:catch}
+			<p>Erro ao carregar cursos.</p>
 		{/await}
 	</div>
 </main>
