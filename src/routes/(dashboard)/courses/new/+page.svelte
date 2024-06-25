@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { AppBar } from '@skeletonlabs/skeleton';
 	import FormErrors from '$lib/components/form/FormErrors.svelte';
-	import { ProgressBar, focusTrap } from '@skeletonlabs/skeleton';
+	import { AppBar, ProgressBar } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms';
 	import PhCaretLeft from '~icons/ph/caret-left';
 

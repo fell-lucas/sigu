@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { AppBar, ProgressRadial } from '@skeletonlabs/skeleton';
-	import { page } from '$app/stores';
 	import PhPlus from '~icons/ph/plus';
 	import PhUserBold from '~icons/ph/user-bold';
-	import PhListChecks from '~icons/ph/list-checks';
 
 	export let data;
 
