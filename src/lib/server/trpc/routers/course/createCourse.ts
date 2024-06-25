@@ -2,11 +2,11 @@ import { ulid } from 'ulidx';
 import { schema } from '../../../../../routes/(dashboard)/courses/new/schema';
 import { db } from '$lib/server/auth';
 import { courseTable } from '$lib/server/db/schema';
-import { publicFormProcedure } from '../../t';
+import { adminFormProcedure } from '../../t';
 import { setFlash } from 'sveltekit-flash-message/server';
 import { messageDatabaseMutationError } from '$lib/server/exceptions';
 
-export const createCourse = publicFormProcedure.input(schema).mutation(async ({ input, ctx }) => {
+export const createCourse = adminFormProcedure.input(schema).mutation(async ({ input, ctx }) => {
 	const courseId = ulid();
 
 	try {
