@@ -1,15 +1,18 @@
 <script lang="ts">
 	import { AppBar, ProgressRadial } from '@skeletonlabs/skeleton';
+	import { superForm } from 'sveltekit-superforms';
 	import PhPlus from '~icons/ph/plus';
 	import PhUserBold from '~icons/ph/user-bold';
-	import { superForm } from 'sveltekit-superforms';
+	import { EnrollmentStatus } from '../../../lib/db-enums';
 
 	export let data;
 	let deleteConfirmation: string | null = null;
 
-	const { form, errors, enhance, delayed, submitting } = superForm(data.form, {onSubmit: () => {
-		deleteConfirmation = null;
-	}});
+	const { enhance } = superForm(data.form, {
+		onSubmit: () => {
+			deleteConfirmation = null;
+		}
+	});
 </script>
 
 <AppBar>
@@ -69,26 +72,25 @@
 									{#if course.enrollmentStatus == EnrollmentStatus.ENROLLED}
 										<span class="text-green-500">Inscrito</span>
 									{:else if course.slotsCount === 0}
-											<span class="text-red-500">Sem vagas</span>
+										<span class="text-red-500">Sem vagas</span>
 									{:else}
-											<form use:enhance method="POST">
-												<input type="hidden" name="courseId" value={course.id} />
-												{#if deleteConfirmation == course.id}
-													<button type="submit" class="variant-filled btn">
-														<span>Confirma?</span>
-													</button>
-												{:else}
-													<button
-														type="button"
-														class="variant-filled btn"
-														onclick={() => (deleteConfirmation = course.id)}
-													>
-														<span>Inscrever-se</span>
-													</button>
-												{/if}
-											</form>
+										<form use:enhance method="POST">
+											<input type="hidden" name="courseId" value={course.id} />
+											{#if deleteConfirmation == course.id}
+												<button type="submit" class="variant-filled btn">
+													<span>Confirma?</span>
+												</button>
+											{:else}
+												<button
+													type="button"
+													class="variant-filled btn"
+													onclick={() => (deleteConfirmation = course.id)}
+												>
+													<span>Inscrever-se</span>
+												</button>
+											{/if}
+										</form>
 									{/if}
-									
 								</span>
 							</div>
 						</footer>

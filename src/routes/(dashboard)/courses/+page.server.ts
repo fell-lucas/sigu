@@ -1,10 +1,9 @@
+import { createContext } from '$lib/server/trpc/context';
+import { createCaller } from '$lib/server/trpc/router';
+import { redirect } from '@sveltejs/kit';
 import { fail, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import type { Actions } from './$types';
 import { schema } from './schema';
-import { createCaller } from '$lib/server/trpc/router';
-import { createContext } from '$lib/server/trpc/context';
-import { redirect } from '@sveltejs/kit';
 
 export const load = async () => {
 	const form = await superValidate(zod(schema));

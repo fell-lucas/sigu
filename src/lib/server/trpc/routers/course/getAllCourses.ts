@@ -1,8 +1,8 @@
 import { db } from '$lib/server/auth';
-import { courseTable, userTable, userEnrollmentsTable } from '$lib/server/db/schema';
-import { authProcedure } from '../../t';
+import { courseTable, userEnrollmentsTable, userTable } from '$lib/server/db/schema';
 import { messageDatabaseQueryError } from '$lib/server/exceptions';
-import { count, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
+import { authProcedure } from '../../t';
 
 export const getAllCourses = authProcedure.query(async ({ ctx }) => {
 	try {
