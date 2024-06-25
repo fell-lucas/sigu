@@ -13,6 +13,7 @@ export const createCourse = publicFormProcedure.input(schema).mutation(async ({ 
 		await db.insert(courseTable).values({
 			id: courseId,
 			name: input.name,
+			description: input.description,
 			professorId: input.professorId,
 			slotsCount: input.slotsCount,
 			startDate: new Date(input.startDate).getTime(),

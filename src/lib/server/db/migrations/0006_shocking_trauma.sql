@@ -1,0 +1,1 @@
+ALTER TABLE `course` ADD `description` text NOT NULL;

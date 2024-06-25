@@ -10,6 +10,7 @@ export const getAllCourses = publicProcedure.query(async ({ ctx }) => {
 			.select({
 				id: courseTable.id,
 				name: courseTable.name,
+				description: courseTable.description,
 				professorName: userTable.name,
 				slotsCount: courseTable.slotsCount,
 				startDate: courseTable.startDate,

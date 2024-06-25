@@ -34,6 +34,7 @@ export const sessionTable = sqliteTable('session', {
 export const courseTable = sqliteTable('course', {
 	id: text('id').notNull().primaryKey(),
 	name: text('name').notNull(),
+	description: text('description').notNull(),
 	professorId: text('professor_id')
 		.notNull()
 		.references(() => userTable.id),

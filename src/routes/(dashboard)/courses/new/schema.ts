@@ -4,6 +4,7 @@ import { z } from 'zod';
 export const schema = z
 	.object({
 		name: base.strings.short,
+		description: base.strings.large,
 		slotsCount: base.numbers.positive,
 		startDate: base.strings.short,
 		endDate: base.strings.short,
