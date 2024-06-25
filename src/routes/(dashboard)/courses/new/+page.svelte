@@ -24,7 +24,7 @@
 </nav>
 
 <main class="mx-auto mt-8 flex max-w-sm flex-col">
-	<p class="text-center">Preencha as informações abaixo sobre o curso a ser cadastrado.</p>
+	<h3 class="h3 text-center">Preencha as informações abaixo sobre o curso a ser cadastrado</h3>
 	<form use:enhance class="mt-8 flex flex-col gap-4" method="POST">
 		<label class="label" for="name">
 			<span>Nome do curso</span>
