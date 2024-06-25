@@ -8,7 +8,7 @@
 	import PhCalendarDots from '~icons/ph/calendar-dots';
 	import PhBooks from '~icons/ph/books';
 
-	$: pathname = "/" + $page.url.pathname.slice(1).split('/')[0];
+	$: pathname = '/' + $page.url.pathname.slice(1).split('/')[0];
 </script>
 
 <div class="flex flex-1">

@@ -1,20 +1,20 @@
 <script lang="ts">
-  import { AppBar } from '@skeletonlabs/skeleton';
+	import { AppBar } from '@skeletonlabs/skeleton';
 	import FormErrors from '$lib/components/form/FormErrors.svelte';
 	import { ProgressBar, focusTrap } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms';
-  import PhCaretLeft from '~icons/ph/caret-left';
+	import PhCaretLeft from '~icons/ph/caret-left';
 
 	export let data;
 
 	const { form, errors, enhance, delayed, submitting } = superForm(data.form);
-  const noProfessors = data.professors.length === 0;
+	const noProfessors = data.professors.length === 0;
 </script>
 
 <AppBar>
 	<svelte:fragment slot="headline">
 		<div class="flex w-full justify-start gap-2">
-      <a type="button" class="items-center text-center p-2" href="/courses" >
+			<a type="button" class="items-center p-2 text-center" href="/courses">
 				<span><PhCaretLeft /></span>
 			</a>
 			<h3 class="h3">Novo Curso</h3>
@@ -22,8 +22,8 @@
 	</svelte:fragment>
 </AppBar>
 
-<main class="flex mx-auto flex-col max-w-sm mt-8">
-<p class="text-center">Preencha as informações abaixo sobre o curso a ser cadastrado.</p>
+<main class="mx-auto mt-8 flex max-w-sm flex-col">
+	<p class="text-center">Preencha as informações abaixo sobre o curso a ser cadastrado.</p>
 	<form use:enhance class="mt-8 flex flex-col gap-4" method="POST">
 		<label class="label" for="name">
 			<span>Nome do curso</span>
@@ -38,18 +38,18 @@
 			<FormErrors errors={$errors.name} />
 		</label>
 
-    <label class="label" for="description">
-      <span>Descrição do curso</span>
-      <textarea
-        class="input h-20 resize-none"
-        id="description"
-        name="description"
-        bind:value={$form.description}
-        placeholder="Digite a descrição..."
-        resi
-      ></textarea>
-      <FormErrors errors={$errors.description} />
-    </label>
+		<label class="label" for="description">
+			<span>Descrição do curso</span>
+			<textarea
+				class="input h-20 resize-none"
+				id="description"
+				name="description"
+				bind:value={$form.description}
+				placeholder="Digite a descrição..."
+				resi
+			></textarea>
+			<FormErrors errors={$errors.description} />
+		</label>
 
 		<label class="label" for="slotsCount">
 			<span>Numero de vagas</span>
@@ -81,24 +81,25 @@
 			<FormErrors errors={$errors.endDate} />
 		</label>
 
-    <label class="label" for="professorId">
-      <span>Professor responsável</span>
-      {#if noProfessors}
-        <p class="text-red-500">Nenhum professor disponível. Não é possível criar um curso.</p>
-      {:else}
-        <select class="input" id="professorId" name="professorId" bind:value={$form.professorId}>
-          {#each data.professors as professor}
-            <option value={professor.id}>{professor.name}</option>
-          {/each}
-        </select>
-        <FormErrors errors={$errors.professorId} />
-      {/if}
-    </label>
-		
-	{#if $delayed}
-		<ProgressBar />
-	{/if} 
+		<label class="label" for="professorId">
+			<span>Professor responsável</span>
+			{#if noProfessors}
+				<p class="text-red-500">Nenhum professor disponível. Não é possível criar um curso.</p>
+			{:else}
+				<select class="input" id="professorId" name="professorId" bind:value={$form.professorId}>
+					{#each data.professors as professor}
+						<option value={professor.id}>{professor.name}</option>
+					{/each}
+				</select>
+				<FormErrors errors={$errors.professorId} />
+			{/if}
+		</label>
 
-		<button disabled={$submitting || noProfessors} class="variant-filled-primary btn">Enviar</button>
+		{#if $delayed}
+			<ProgressBar />
+		{/if}
+
+		<button disabled={$submitting || noProfessors} class="variant-filled-primary btn">Enviar</button
+		>
 	</form>
 </main>
