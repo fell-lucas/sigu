@@ -33,13 +33,7 @@
 	<h5 class="h5 font-semibold">Cursos disponíveis</h5>
 	<hr class="!border-t-2" />
 	<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-		{#await data.courses}
-			<ProgressRadial class="w-8" />
-		{:then courses}
-			{#if courses.length === 0}
-				<p>Nenhum curso disponível.</p>
-			{:else}
-				{#each courses as course}
+				{#each data.courses as course}
 					<div class="text-toke card flex flex-col justify-between overflow-hidden shadow-xl">
 						<a class="space-y-4 p-4" href="/courses/{course.id}">
 							<h3 class="h3 line-clamp-1 overflow-ellipsis">{course.name}</h3>
@@ -70,20 +64,20 @@
 								</span>
 								<span class="items-center gap-2 font-semibold">
 									{#if course.enrollmentStatus == EnrollmentStatus.ENROLLED}
-										<span class="text-green-500">Inscrito</span>
+										<span class="text-green-500 mr-4">Inscrito</span>
 									{:else if course.slotsCount === 0}
-										<span class="text-red-500">Sem vagas</span>
+										<span class="text-red-500 btn variant-ghost">Sem vagas</span>
 									{:else}
 										<form use:enhance method="POST">
 											<input type="hidden" name="courseId" value={course.id} />
 											{#if deleteConfirmation == course.id}
-												<button type="submit" class="variant-filled btn">
+												<button type="submit" class="variant-filled btn-sm btn">
 													<span>Confirma?</span>
 												</button>
 											{:else}
 												<button
 													type="button"
-													class="variant-filled btn"
+													class="variant-filled btn-sm btn"
 													onclick={() => (deleteConfirmation = course.id)}
 												>
 													<span>Inscrever-se</span>
@@ -95,10 +89,8 @@
 							</div>
 						</footer>
 					</div>
+				{:else}
+					<p>Nenhum curso disponível.</p>
 				{/each}
-			{/if}
-		{:catch}
-			<p>Erro ao carregar cursos.</p>
-		{/await}
 	</div>
 </main>

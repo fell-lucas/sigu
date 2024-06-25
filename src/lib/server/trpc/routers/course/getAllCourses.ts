@@ -15,16 +15,27 @@ export const getAllCourses = authProcedure.query(async ({ ctx }) => {
 				professorName: userTable.name,
 				slotsCount: courseTable.slotsCount,
 				startDate: courseTable.startDate,
-				endDate: courseTable.endDate,
-				enrollmentStatus: userEnrollmentsTable.status
+				endDate: courseTable.endDate
 			})
 			.from(courseTable)
 			.leftJoin(userTable, eq(courseTable.professorId, userTable.id))
-			.leftJoin(userEnrollmentsTable, eq(courseTable.id, userEnrollmentsTable.courseId))
-			.where(eq(userEnrollmentsTable.userId, userId))
 			.all();
 
-		return courses;
+		const enrollments = await db
+			.select({
+				courseId: userEnrollmentsTable.courseId,
+				status: userEnrollmentsTable.status
+			})
+			.from(userEnrollmentsTable)
+			.where(eq(userEnrollmentsTable.userId, userId));
+
+		return courses.map((course) => {
+			const enrollment = enrollments.find((enrollment) => enrollment.courseId === course.id);
+			return {
+				...course,
+				enrollmentStatus: enrollment?.status
+			};
+		});
 	} catch (error) {
 		console.error(error);
 		return messageDatabaseQueryError(ctx);
