@@ -54,7 +54,7 @@
 			</form>
 		</svelte:fragment>
 	</AppRail>
-	<div class="w-full">
+	<div class="max-h-screen w-full overflow-y-auto">
 		<slot></slot>
 	</div>
 </div>
