@@ -13,6 +13,7 @@ export const getAllCourses = authProcedure.query(async ({ ctx }) => {
 				name: courseTable.name,
 				description: courseTable.description,
 				professorName: userTable.name,
+				professorId: userTable.id,
 				slotsCount: courseTable.slotsCount,
 				startDate: courseTable.startDate,
 				endDate: courseTable.endDate

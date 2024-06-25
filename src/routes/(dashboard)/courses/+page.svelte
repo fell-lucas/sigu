@@ -4,6 +4,7 @@
 	import PhPlus from '~icons/ph/plus';
 	import PhUserBold from '~icons/ph/user-bold';
 	import { EnrollmentStatus } from '../../../lib/db-enums';
+	import { page } from '$app/stores';
 
 	export let data;
 	let deleteConfirmation: string | null = null;
@@ -65,27 +66,29 @@
 									<span>{course.professorName}</span>
 								</span>
 								<span class="items-center gap-2 font-semibold">
-									{#if course.enrollmentStatus == EnrollmentStatus.ENROLLED}
-										<span class="text-green-500 mr-4">Inscrito</span>
-									{:else if course.slotsCount === 0}
-										<span class="text-red-500 btn variant-ghost">Sem vagas</span>
-									{:else}
-										<form use:enhance method="POST">
-											<input type="hidden" name="courseId" value={course.id} />
-											{#if deleteConfirmation == course.id}
-												<button type="submit" class="variant-filled btn-sm btn">
-													<span>Confirma?</span>
-												</button>
-											{:else}
-												<button
-													type="button"
-													class="variant-filled btn-sm btn"
-													onclick={() => (deleteConfirmation = course.id)}
-												>
-													<span>Inscrever-se</span>
-												</button>
-											{/if}
-										</form>
+									{#if $page.data.session?.userId !== course.professorId}
+										{#if course.enrollmentStatus == EnrollmentStatus.ENROLLED}
+											<span class="text-green-500 mr-4">Inscrito</span>
+										{:else if course.slotsCount === 0}
+											<span class="text-red-500 btn variant-ghost">Sem vagas</span>
+										{:else}
+											<form use:enhance method="POST">
+												<input type="hidden" name="courseId" value={course.id} />
+												{#if deleteConfirmation == course.id}
+													<button type="submit" class="variant-filled btn-sm btn">
+														<span>Confirma?</span>
+													</button>
+												{:else}
+													<button
+														type="button"
+														class="variant-filled btn-sm btn"
+														onclick={() => (deleteConfirmation = course.id)}
+													>
+														<span>Inscrever-se</span>
+													</button>
+												{/if}
+											</form>
+										{/if}
 									{/if}
 								</span>
 							</div>
