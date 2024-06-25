@@ -1,4 +1,4 @@
-import { UserRole } from '../../db-enums';
+import { EnrollmentStatus, UserRole } from '../../db-enums';
 import { sql } from 'drizzle-orm';
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 
@@ -16,6 +16,22 @@ export const userTable = sqliteTable('user', {
 	updatedAt: integer('updated_at')
 		.notNull()
 		.default(sql`CURRENT_TIMESTAMP`)
+});
+
+export const userEnrollmentsTable = sqliteTable('user_enrollments', {
+	id: text('id').notNull().primaryKey(),
+	userId: text('user_id')
+		.notNull()
+		.references(() => userTable.id),
+	courseId: text('course_id')
+		.notNull()
+		.references(() => courseTable.id),
+	enrollmentDate: integer('enrollment_date')
+		.notNull()
+		.default(sql`CURRENT_TIMESTAMP`),
+	status: text('status', {
+		enum: [EnrollmentStatus.ENROLLED, EnrollmentStatus.COMPLETED, EnrollmentStatus.DROPPED]
+	})
 });
 
 export const sessionTable = sqliteTable('session', {
