@@ -1,11 +1,12 @@
 import { db } from '$lib/server/auth';
-import { courseTable, userTable } from '$lib/server/db/schema';
-import { publicProcedure } from '../../t';
+import { courseTable, userTable, userEnrollmentsTable } from '$lib/server/db/schema';
+import { authProcedure } from '../../t';
 import { messageDatabaseQueryError } from '$lib/server/exceptions';
-import { eq } from 'drizzle-orm';
+import { count, eq } from 'drizzle-orm';
 
-export const getAllCourses = publicProcedure.query(async ({ ctx }) => {
+export const getAllCourses = authProcedure.query(async ({ ctx }) => {
 	try {
+		const userId = ctx.event.locals.user!.id;
 		const courses = await db
 			.select({
 				id: courseTable.id,
@@ -14,11 +15,14 @@ export const getAllCourses = publicProcedure.query(async ({ ctx }) => {
 				professorName: userTable.name,
 				slotsCount: courseTable.slotsCount,
 				startDate: courseTable.startDate,
-				endDate: courseTable.endDate
+				endDate: courseTable.endDate,
+				enrollmentStatus: userEnrollmentsTable.status
 			})
 			.from(courseTable)
-			.innerJoin(userTable, eq(courseTable.professorId, userTable.id))
-			.execute();
+			.leftJoin(userTable, eq(courseTable.professorId, userTable.id))
+			.leftJoin(userEnrollmentsTable, eq(courseTable.id, userEnrollmentsTable.courseId))
+			.where(eq(userEnrollmentsTable.userId, userId))
+			.all();
 
 		return courses;
 	} catch (error) {
