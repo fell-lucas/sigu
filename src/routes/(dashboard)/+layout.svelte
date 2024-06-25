@@ -7,36 +7,38 @@
 	import PhBookOpenText from '~icons/ph/book-open-text';
 	import PhCalendarDots from '~icons/ph/calendar-dots';
 	import PhBooks from '~icons/ph/books';
+
+	$: pathname = '/' + $page.url.pathname.slice(1).split('/')[0];
 </script>
 
 <div class="flex flex-1">
 	<AppRail width="w-24">
-		<AppRailAnchor href="/" selected={$page.url.pathname === '/'}>
+		<AppRailAnchor href="/" selected={pathname === '/'}>
 			<svelte:fragment slot="lead">
 				<PhHouse class="w-full" />
 			</svelte:fragment>
 			<span>SIGU</span>
 		</AppRailAnchor>
-		<AppRailAnchor href="/courses" selected={$page.url.pathname === '/courses'}>
+		<AppRailAnchor href="/courses" selected={pathname === '/courses'}>
 			<svelte:fragment slot="lead">
 				<PhBookOpenText class="w-full" />
 			</svelte:fragment>
 			<span>Cursos</span>
 		</AppRailAnchor>
-		<AppRailAnchor href="/schedule" selected={$page.url.pathname === '/schedule'}>
+		<AppRailAnchor href="/schedule" selected={pathname === '/schedule'}>
 			<svelte:fragment slot="lead">
 				<PhCalendarDots class="w-full" />
 			</svelte:fragment>
 			<span>Cronograma</span>
 		</AppRailAnchor>
-		<AppRailAnchor href="/library" selected={$page.url.pathname === '/library'}>
+		<AppRailAnchor href="/library" selected={pathname === '/library'}>
 			<svelte:fragment slot="lead">
 				<PhBooks class="w-full" />
 			</svelte:fragment>
 			<span>Biblioteca</span>
 		</AppRailAnchor>
 		<svelte:fragment slot="trail">
-			<AppRailAnchor href="/account" selected={$page.url.pathname === '/account'}>
+			<AppRailAnchor href="/account" selected={pathname === '/account'}>
 				<svelte:fragment slot="lead">
 					<PhUserCircleGear />
 				</svelte:fragment>
