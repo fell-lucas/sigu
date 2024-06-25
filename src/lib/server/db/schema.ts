@@ -64,3 +64,19 @@ export const courseTable = sqliteTable('course', {
 		.notNull()
 		.default(sql`CURRENT_TIMESTAMP`)
 });
+
+export const courseMaterialTable = sqliteTable('course_material', {
+	id: text('id').notNull().primaryKey(),
+	courseId: text('course_id')
+		.notNull()
+		.references(() => courseTable.id),
+	name: text('name').notNull(),
+	content: text('content').notNull(),
+	isLink: integer('is_link').notNull().default(0),
+	createdAt: integer('created_at')
+		.notNull()
+		.default(sql`CURRENT_TIMESTAMP`),
+	updatedAt: integer('updated_at')
+		.notNull()
+		.default(sql`CURRENT_TIMESTAMP`)
+});

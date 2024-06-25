@@ -3,10 +3,14 @@
 	import { AppBar } from '@skeletonlabs/skeleton';
 </script>
 
-<AppBar>
-	<svelte:fragment slot="headline">
-		<h3 class="h3 w-full">Minha conta</h3>
-	</svelte:fragment>
-</AppBar>
+<nav class="sticky top-0">
+	<AppBar>
+		<svelte:fragment slot="headline">
+			<h3 class="h3 w-full">Minha conta</h3>
+		</svelte:fragment>
+	</AppBar>
+</nav>
 
-Você é {$page.data.session?.role}
+<div class="p-4">
+	Você é {$page.data.session?.role}
+</div>

@@ -15,19 +15,21 @@
 	});
 </script>
 
-<AppBar>
-	<svelte:fragment slot="headline">
-		<div class="flex w-full justify-between">
-			<h3 class="h3">Cursos</h3>
-			{#if data.role === 'ADMIN'}
-				<a type="button" class="variant-filled btn" href="/courses/new">
-					<span><PhPlus class="w-full" /></span>
-					<span>Novo Curso</span>
-				</a>
-			{/if}
-		</div>
-	</svelte:fragment>
-</AppBar>
+<nav class="sticky top-0">
+	<AppBar>
+		<svelte:fragment slot="headline">
+			<div class="flex w-full justify-between">
+				<h3 class="h3">Cursos</h3>
+				{#if data.role === 'ADMIN'}
+					<a type="button" class="variant-filled btn" href="/courses/new">
+						<span><PhPlus class="w-full" /></span>
+						<span>Novo Curso</span>
+					</a>
+				{/if}
+			</div>
+		</svelte:fragment>
+	</AppBar>
+</nav>
 
 <main class="mx-4 mt-8 flex flex-col gap-4">
 	<h5 class="h5 font-semibold">Cursos disponíveis</h5>
