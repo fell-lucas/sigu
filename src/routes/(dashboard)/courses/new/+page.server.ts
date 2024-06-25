@@ -20,7 +20,15 @@ export const actions: Actions = {
 		if (!form.valid) {
 			return fail(400, { form });
 		}
-		// const caller = createCaller(await createContext(event, form));
-		// return await caller.user.signin(form.data);
+
+		try {
+			const caller = createCaller(await createContext(event, form));
+			await caller.course.create(form.data);
+
+			return { success: true, form };
+		} catch (error) {
+			console.error(error);
+			return fail(500, { form, message: 'An error occurred while creating the course' });
+		}
 	}
 };

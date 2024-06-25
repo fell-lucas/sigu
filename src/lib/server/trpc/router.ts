@@ -1,9 +1,11 @@
 import { type inferRouterInputs, type inferRouterOutputs } from '@trpc/server';
 import { router, createCallerFactory } from './t';
 import { userRouter } from './routers/user/router';
+import { courseRouter } from './routers/course/router';
 
 export const appRouter = router({
-	user: userRouter
+	user: userRouter,
+	course: courseRouter
 });
 
 export const createCaller = createCallerFactory(appRouter);
