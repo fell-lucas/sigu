@@ -27,20 +27,21 @@
   <hr class="!border-t-2 mt-3" />
 	<section class="p-4 flex flex-row items-center variant-soft"> <PhUserBold class="" /> {data.course.professorName}</section>
 	<Section title="Descrição">
-    <hr class="!border-t-2" />  
     <p class="p-4">{data.course.description}</p>
-  <Section/>
+  </Section>
 
   <Section title="Datas">
-    <hr class="!border-t-2" />  
     <p class="p-3">Início: {new Date(data.course.startDate).toLocaleDateString()}</p>
     <p class="p-3">Fim: {new Date(data.course.endDate).toLocaleDateString()}</p>
-  <Section/>
+  </Section>
 
   <Section title="Vagas">
-    <hr class="!border-t-2" />  
     <p class="p-4">{data.course.slotsCount}</p>
-  <Section/>
+  </Section>
+
+  <Section title="Materiais do Curso">
+    WIP
+  </Section>
 
 </div>
 
