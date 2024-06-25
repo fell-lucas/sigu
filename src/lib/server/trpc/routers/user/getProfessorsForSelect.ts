@@ -9,7 +9,7 @@ export const getProfessorsForSelect = publicProcedure.query(async ({ ctx }) => {
 			where: (users, { eq }) => eq(users.role, 'PROFESSOR')
 		});
 
-		return professors ?? [];
+		return professors;
 	} catch (_) {
 		return messageDatabaseQueryError(ctx);
 	}
