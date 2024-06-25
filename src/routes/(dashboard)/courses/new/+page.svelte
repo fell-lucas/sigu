@@ -8,6 +8,7 @@
 	export let data;
 
 	const { form, errors, enhance, delayed, submitting } = superForm(data.form);
+  const noProfessors = data.professors.length === 0;
 </script>
 
 <AppBar>
@@ -66,11 +67,25 @@
 			<input class="input" type="date" id="endDate" name="endDate" bind:value={$form.endDate} />
 			<FormErrors errors={$errors.endDate} />
 		</label>
+
+    <label class="label" for="professorId">
+      <span>Professor responsável</span>
+      {#if noProfessors}
+        <p class="text-red-500">Nenhum professor disponível. Não é possível criar um curso.</p>
+      {:else}
+        <select class="input" id="professorId" name="professorId" bind:value={$form.professorId}>
+          {#each data.professors as professor}
+            <option value={professor.id}>{professor.name}</option>
+          {/each}
+        </select>
+        <FormErrors errors={$errors.professorId} />
+      {/if}
+    </label>
 		
 	{#if $delayed}
 		<ProgressBar />
 	{/if} 
 
-		<button disabled={$submitting} class="variant-filled-primary btn">Enviar</button>
+		<button disabled={$submitting || noProfessors} class="variant-filled-primary btn">Enviar</button>
 	</form>
 </main>

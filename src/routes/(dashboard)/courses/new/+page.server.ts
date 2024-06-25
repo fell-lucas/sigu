@@ -8,7 +8,10 @@ import { createContext } from '$lib/server/trpc/context';
 export const load = async (event) => {
 	const form = await superValidate(zod(schema));
 
-	return { form };
+	const caller = createCaller(await createContext(event));
+	const professors = await caller.user.getProfessorsForSelect();
+
+	return { form, professors };
 };
 
 export const actions: Actions = {
