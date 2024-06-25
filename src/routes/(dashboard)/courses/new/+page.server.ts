@@ -4,8 +4,13 @@ import type { Actions } from './$types';
 import { schema } from './schema';
 import { createCaller } from '$lib/server/trpc/router';
 import { createContext } from '$lib/server/trpc/context';
+import { redirect } from '@sveltejs/kit';
 
 export const load = async (event) => {
+	if (event.locals.session?.role !== 'ADMIN') {
+		return redirect(303, '/');
+	}
+
 	const form = await superValidate(zod(schema));
 
 	const caller = createCaller(await createContext(event));
