@@ -1,5 +1,6 @@
 <script lang="ts">
 	import FormErrors from '$lib/components/form/FormErrors.svelte';
+  import Section from '$lib/components/cards/Section.svelte';
 	import { AppBar, ProgressBar } from '@skeletonlabs/skeleton';
 	import { superForm } from 'sveltekit-superforms';
 	import PhCaretLeft from '~icons/ph/caret-left';
@@ -25,24 +26,21 @@
 	<header class="card-header h3 text-center ">{data.course.name}</header>
   <hr class="!border-t-2 mt-3" />
 	<section class="p-4 flex flex-row items-center variant-soft"> <PhUserBold class="" /> {data.course.professorName}</section>
-	<section class="flex flex-col mx-2  rounded-lg mt-2 variant-outline"> 
-    <header class="h5 variant-soft p-4 font-bold">Descrição</header>
+	<Section title="Descrição">
     <hr class="!border-t-2" />  
     <p class="p-4">{data.course.description}</p>
-  </section>
+  <Section/>
 
-  <section class="flex flex-col mx-2  rounded-lg mt-2 variant-outline"> 
-    <header class="h5 variant-soft p-4 font-bold">Datas</header>
+  <Section title="Datas">
     <hr class="!border-t-2" />  
     <p class="p-3">Início: {new Date(data.course.startDate).toLocaleDateString()}</p>
     <p class="p-3">Fim: {new Date(data.course.endDate).toLocaleDateString()}</p>
-  </section>
+  <Section/>
 
-  <section class="flex flex-col mx-2  rounded-lg mt-2 variant-outline"> 
-    <header class="h5 variant-soft p-4 font-bold">Vagas</header>
+  <Section title="Vagas">
     <hr class="!border-t-2" />  
     <p class="p-4">{data.course.slotsCount}</p>
-  </section>
+  <Section/>
 
 </div>
 
