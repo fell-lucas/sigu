@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { AppRouterOutput } from '$lib/server/trpc/router.js';
 	import { AppBar, ProgressRadial } from '@skeletonlabs/skeleton';
 	import PhPlus from '~icons/ph/plus';
 	import PhUserBold from '~icons/ph/user-bold';
@@ -12,7 +11,7 @@
 		<div class="flex w-full justify-between">
 			<h3 class="h3">Cursos</h3>
 			{#if data.role === 'ADMIN'}
-				<a type="button" class="variant-filled btn" href='/courses/new'>
+				<a type="button" class="variant-filled btn" href="/courses/new">
 					<span><PhPlus class="w-full" /></span>
 					<span>Novo Curso</span>
 				</a>
@@ -32,7 +31,10 @@
 				<p class="text-center">Nenhum curso disponível.</p>
 			{:else}
 				{#each courses as course}
-					<a class="text-toke card flex flex-col justify-between overflow-hidden shadow-xl" href='/courses/{course.id}'>
+					<a
+						class="text-toke card flex flex-col justify-between overflow-hidden shadow-xl"
+						href="/courses/{course.id}"
+					>
 						<div class="space-y-4 p-4">
 							<h3 class="h3 line-clamp-1 w-4/5">{course.name}</h3>
 							<article>
@@ -64,7 +66,7 @@
 					</a>
 				{/each}
 			{/if}
-		{:catch error}
+		{:catch}
 			<p>Erro ao carregar cursos.</p>
 		{/await}
 	</div>

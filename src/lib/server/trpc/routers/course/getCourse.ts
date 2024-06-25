@@ -21,7 +21,6 @@ export const getCourse = publicProcedure.query(async ({ ctx }) => {
 			.innerJoin(userTable, eq(courseTable.professorId, userTable.id))
 			.execute();
 
-		console.log(course[0]);
 		return course[0];
 	} catch (error) {
 		console.error(error);
