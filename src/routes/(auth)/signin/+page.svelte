@@ -14,7 +14,14 @@
 <form use:enhance use:focusTrap={true} class="mt-8 flex flex-col gap-4" method="POST">
 	<label class="label" for="email">
 		<span>E-mail</span>
-		<input class="input" type="email" id="email" name="email" bind:value={$form.email} data-testid="email-field"/>
+		<input
+			class="input"
+			type="email"
+			id="email"
+			name="email"
+			bind:value={$form.email}
+			data-testid="email-field"
+		/>
 		<FormErrors errors={$errors.email} />
 	</label>
 
@@ -35,6 +42,8 @@
 		<ProgressBar />
 	{/if}
 
-	<button disabled={$submitting} class="variant-filled-primary btn" data-testid="submit-btn">Enviar</button>
+	<button disabled={$submitting} class="variant-filled-primary btn" data-testid="submit-btn"
+		>Enviar</button
+	>
 	<a class="anchor" href="/signup">Não possui conta? Crie sua conta</a>
 </form>

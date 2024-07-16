@@ -22,7 +22,12 @@
 			<div class="flex w-full justify-between">
 				<h3 class="h3">Cursos</h3>
 				{#if data.role === 'ADMIN'}
-					<a type="button" class="variant-filled btn" href="/courses/new" data-testid='new-course-btn'>
+					<a
+						type="button"
+						class="variant-filled btn"
+						href="/courses/new"
+						data-testid="new-course-btn"
+					>
 						<span><PhPlus class="w-full" /></span>
 						<span>Novo Curso</span>
 					</a>

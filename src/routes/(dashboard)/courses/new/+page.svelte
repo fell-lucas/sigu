@@ -81,7 +81,14 @@
 
 		<label class="label" for="endDate">
 			<span>Data de fim</span>
-			<input class="input" type="date" id="endDate" name="endDate" bind:value={$form.endDate} data-testid="endDate-field" />
+			<input
+				class="input"
+				type="date"
+				id="endDate"
+				name="endDate"
+				bind:value={$form.endDate}
+				data-testid="endDate-field"
+			/>
 			<FormErrors errors={$errors.endDate} />
 		</label>
 
@@ -90,7 +97,13 @@
 			{#if noProfessors}
 				<p class="text-red-500">Nenhum professor disponível. Não é possível criar um curso.</p>
 			{:else}
-				<select class="input" id="professorId" name="professorId" bind:value={$form.professorId} data-testid="professor-field">
+				<select
+					class="input"
+					id="professorId"
+					name="professorId"
+					bind:value={$form.professorId}
+					data-testid="professor-field"
+				>
 					{#each data.professors as professor}
 						<option value={professor.id}>{professor.name}</option>
 					{/each}
@@ -103,7 +116,10 @@
 			<ProgressBar />
 		{/if}
 
-		<button disabled={$submitting || noProfessors} class="variant-filled-primary btn" data-testid="submit-btn">Enviar</button
+		<button
+			disabled={$submitting || noProfessors}
+			class="variant-filled-primary btn"
+			data-testid="submit-btn">Enviar</button
 		>
 	</form>
 </main>
