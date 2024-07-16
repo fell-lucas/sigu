@@ -114,5 +114,24 @@ test('should not create a new course if required fields were not filled', async 
 
 	await page.getByTestId('submit-btn').first().click();
 
-	await expect(page.getByText('Campo obrigatório')).toBeVisible();
+	await expect(page.getByText('Campo obrigatório')).toHaveCount(4);
+});
+
+test('should not create a new course if there is some invalid data format', async ({
+	setup: { page, professorId }
+}) => {
+	await page.goto('/courses', { waitUntil: 'networkidle' });
+
+	await page.getByTestId('new-course-btn').first().click();
+	await page.waitForLoadState();
+
+	await page.getByTestId('name-field').fill('Test course');
+	await page.getByTestId('description-field').fill('Test course description');
+	await page.getByTestId('slotsCount-field').fill('-10');
+	await page.getByTestId('startDate-field').fill('2022-01-01');
+	await page.getByTestId('endDate-field').fill('2022-02-02');
+	await page.getByTestId('professor-field').selectOption(professorId);
+	await page.getByTestId('submit-btn').first().click();
+
+	await expect(page.getByText('Deve ser um número positivo')).toBeVisible();
 });
