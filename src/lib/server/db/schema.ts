@@ -38,7 +38,7 @@ export const sessionTable = sqliteTable('session', {
 	id: text('id').notNull().primaryKey(),
 	userId: text('user_id')
 		.notNull()
-		.references(() => userTable.id),
+		.references(() => userTable.id, { onDelete: 'cascade' }),
 	name: text('name').notNull(),
 	email: text('email').notNull(),
 	role: text('role', { enum: [UserRole.ADMIN, UserRole.PROFESSOR, UserRole.STUDENT] })

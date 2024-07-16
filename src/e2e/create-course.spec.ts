@@ -52,7 +52,7 @@ const test = base.extend<{
 		// 	}
 		// });
 
-		// await db.delete(userTable). .where(eq(userTable.id, userId));
+		await db.delete(userTable).where(eq(userTable.id, userId));
 	}
 });
 
