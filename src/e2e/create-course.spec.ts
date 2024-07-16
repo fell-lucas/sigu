@@ -47,6 +47,8 @@ const test = base.extend<{
 	}
 });
 
+test.describe.configure({ mode: 'parallel' });
+
 test('should create a new course', async ({ setup: { page, professorId } }) => {
 	await page.goto('/courses', { waitUntil: 'networkidle' });
 
