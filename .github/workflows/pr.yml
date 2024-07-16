@@ -33,10 +33,10 @@ jobs:
       - uses: fell-lucas/setup-pnpm-action@main
       - run: pnpm test:unit
 
-  # e2eTests:
-  #   name: 🎭 E2E Tests
-  #   timeout-minutes: 30
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: fell-lucas/setup-pnpm-action@main
-  #     - run: pnpm run test:integration
+  e2eTests:
+    name: 🎭 E2E Tests
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fell-lucas/setup-pnpm-action@main
+      - run: pnpm run test:integration
