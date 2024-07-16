@@ -15,13 +15,14 @@
 		"test:unit": "vitest",
 		"drizzle:generate": "drizzle-kit generate",
 		"drizzle:migrate": "drizzle-kit migrate",
-		"drizzle:studio": "drizzle-kit studio"
+		"drizzle:studio": "drizzle-kit studio",
+		"playwright:install": "playwright install"
 	},
 	"devDependencies": {
 		"@iconify/json": "^2.2.221",
 		"@libsql/client": "^0.6.2",
 		"@lucia-auth/adapter-drizzle": "^1.0.7",
-		"@playwright/test": "^1.28.1",
+		"@playwright/test": "^1.44.1",
 		"@skeletonlabs/skeleton": "^2.10.1",
 		"@skeletonlabs/tw-plugin": "^0.4.0",
 		"@sveltejs/adapter-cloudflare": "^4.5.0",
@@ -66,5 +67,5 @@
 		"zod": "^3.23.8"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.1.2"
+	"packageManager": "pnpm@9.1.4"
 }
