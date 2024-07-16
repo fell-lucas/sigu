@@ -35,6 +35,7 @@
 				name="name"
 				bind:value={$form.name}
 				placeholder="Digite o nome..."
+				data-testid="name-field"
 			/>
 			<FormErrors errors={$errors.name} />
 		</label>
@@ -47,6 +48,7 @@
 				name="description"
 				bind:value={$form.description}
 				placeholder="Digite a descrição..."
+				data-testid="description-field"
 			></textarea>
 			<FormErrors errors={$errors.description} />
 		</label>
@@ -59,6 +61,7 @@
 				id="slotsCount"
 				name="slotsCount"
 				bind:value={$form.slotsCount}
+				data-testid="slotsCount-field"
 			/>
 			<FormErrors errors={$errors.slotsCount} />
 		</label>
@@ -71,13 +74,21 @@
 				id="startDate"
 				name="startDate"
 				bind:value={$form.startDate}
+				data-testid="startDate-field"
 			/>
 			<FormErrors errors={$errors.startDate} />
 		</label>
 
 		<label class="label" for="endDate">
 			<span>Data de fim</span>
-			<input class="input" type="date" id="endDate" name="endDate" bind:value={$form.endDate} />
+			<input
+				class="input"
+				type="date"
+				id="endDate"
+				name="endDate"
+				bind:value={$form.endDate}
+				data-testid="endDate-field"
+			/>
 			<FormErrors errors={$errors.endDate} />
 		</label>
 
@@ -86,7 +97,13 @@
 			{#if noProfessors}
 				<p class="text-red-500">Nenhum professor disponível. Não é possível criar um curso.</p>
 			{:else}
-				<select class="input" id="professorId" name="professorId" bind:value={$form.professorId}>
+				<select
+					class="input"
+					id="professorId"
+					name="professorId"
+					bind:value={$form.professorId}
+					data-testid="professor-field"
+				>
 					{#each data.professors as professor}
 						<option value={professor.id}>{professor.name}</option>
 					{/each}
@@ -99,7 +116,10 @@
 			<ProgressBar />
 		{/if}
 
-		<button disabled={$submitting || noProfessors} class="variant-filled-primary btn">Enviar</button
+		<button
+			disabled={$submitting || noProfessors}
+			class="variant-filled-primary btn"
+			data-testid="submit-btn">Enviar</button
 		>
 	</form>
 </main>

@@ -11,17 +11,19 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
+		"test:ui": "playwright test --ui",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"drizzle:generate": "drizzle-kit generate",
 		"drizzle:migrate": "drizzle-kit migrate",
-		"drizzle:studio": "drizzle-kit studio"
+		"drizzle:studio": "drizzle-kit studio",
+		"playwright:install": "playwright install"
 	},
 	"devDependencies": {
 		"@iconify/json": "^2.2.221",
 		"@libsql/client": "^0.6.2",
 		"@lucia-auth/adapter-drizzle": "^1.0.7",
-		"@playwright/test": "^1.28.1",
+		"@playwright/test": "^1.44.1",
 		"@skeletonlabs/skeleton": "^2.10.1",
 		"@skeletonlabs/tw-plugin": "^0.4.0",
 		"@sveltejs/adapter-cloudflare": "^4.5.0",
@@ -37,6 +39,7 @@
 		"@types/nprogress": "^0.2.3",
 		"autoprefixer": "^10.4.19",
 		"bcryptjs": "^2.4.3",
+		"dotenv": "^16.4.5",
 		"drizzle-kit": "^0.22.7",
 		"drizzle-orm": "^0.31.2",
 		"eslint": "^9.0.0",
@@ -66,5 +69,5 @@
 		"zod": "^3.23.8"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.1.2"
+	"packageManager": "pnpm@9.1.4"
 }

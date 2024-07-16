@@ -64,6 +64,13 @@
       "when": 1719341216536,
       "tag": "0008_watery_red_hulk",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1721160417902,
+      "tag": "0009_goofy_moira_mactaggert",
+      "breakpoints": true
     }
   ]
 }
