@@ -13,7 +13,7 @@ export const createCourse = adminFormProcedure.input(schema).mutation(async ({ i
 		await db.insert(courseTable).values({
 			id: courseId,
 			name: input.name,
-			description: input.description,
+			description: input.description ?? '',
 			professorId: input.professorId,
 			slotsCount: input.slotsCount,
 			startDate: new Date(input.startDate).getTime(),

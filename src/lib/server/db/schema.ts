@@ -22,10 +22,10 @@ export const userEnrollmentsTable = sqliteTable('user_enrollments', {
 	id: text('id').notNull().primaryKey(),
 	userId: text('user_id')
 		.notNull()
-		.references(() => userTable.id),
+		.references(() => userTable.id, { onDelete: 'cascade' }),
 	courseId: text('course_id')
 		.notNull()
-		.references(() => courseTable.id),
+		.references(() => courseTable.id, { onDelete: 'cascade' }),
 	enrollmentDate: integer('enrollment_date')
 		.notNull()
 		.default(sql`CURRENT_TIMESTAMP`),
@@ -53,7 +53,7 @@ export const courseTable = sqliteTable('course', {
 	description: text('description').notNull(),
 	professorId: text('professor_id')
 		.notNull()
-		.references(() => userTable.id),
+		.references(() => userTable.id, { onDelete: 'cascade' }),
 	slotsCount: integer('slots_count').notNull(),
 	startDate: integer('start_date').notNull(),
 	endDate: integer('end_date').notNull(),
@@ -69,7 +69,7 @@ export const courseMaterialTable = sqliteTable('course_material', {
 	id: text('id').notNull().primaryKey(),
 	courseId: text('course_id')
 		.notNull()
-		.references(() => courseTable.id),
+		.references(() => courseTable.id, { onDelete: 'cascade' }),
 	name: text('name').notNull(),
 	content: text('content').notNull(),
 	isLink: integer('is_link').notNull().default(0),
