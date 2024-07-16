@@ -38,6 +38,7 @@
 		"@types/nprogress": "^0.2.3",
 		"autoprefixer": "^10.4.19",
 		"bcryptjs": "^2.4.3",
+		"dotenv": "^16.4.5",
 		"drizzle-kit": "^0.22.7",
 		"drizzle-orm": "^0.31.2",
 		"eslint": "^9.0.0",
