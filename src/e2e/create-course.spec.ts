@@ -62,6 +62,7 @@ test('should create a new course', async ({ setup: { page, professorId } }) => {
 	await page.getByTestId('endDate-field').fill('2022-12-12');
 	await page.getByTestId('professor-field').selectOption(professorId);
 	await page.getByTestId('submit-btn').first().click();
+	await page.waitForLoadState();
 
 	await expect(page.getByText('Curso criado com sucesso!')).toBeVisible();
 });
@@ -81,6 +82,7 @@ test('should create a new course even if optional fields were not filled', async
 	await page.getByTestId('endDate-field').fill('2022-12-12');
 	await page.getByTestId('professor-field').selectOption(professorId);
 	await page.getByTestId('submit-btn').first().click();
+	await page.waitForLoadState();
 
 	await expect(page.getByText('Curso criado com sucesso!')).toBeVisible();
 });
@@ -100,6 +102,7 @@ test('should not create a new course if the startDate is after endDate', async (
 	await page.getByTestId('endDate-field').fill('2022-01-01');
 	await page.getByTestId('professor-field').selectOption(professorId);
 	await page.getByTestId('submit-btn').first().click();
+	await page.waitForLoadState();
 
 	await expect(
 		page.getByText('A data de início deve ser anterior à data de término.')
@@ -115,6 +118,7 @@ test('should not create a new course if required fields were not filled', async 
 	await page.waitForLoadState();
 
 	await page.getByTestId('submit-btn').first().click();
+	await page.waitForLoadState();
 
 	await expect(page.getByText('Campo obrigatório')).toHaveCount(4);
 });
@@ -134,6 +138,7 @@ test('should not create a new course if there is some invalid data format', asyn
 	await page.getByTestId('endDate-field').fill('2022-02-02');
 	await page.getByTestId('professor-field').selectOption(professorId);
 	await page.getByTestId('submit-btn').first().click();
+	await page.waitForLoadState();
 
 	await expect(page.getByText('Deve ser um número positivo')).toBeVisible();
 });
