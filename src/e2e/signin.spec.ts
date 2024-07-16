@@ -1,5 +1,5 @@
 import { UserRole } from '$lib/db-enums';
-import { userTable } from '$lib/server/db/schema';
+import { sessionTable, userTable } from '$lib/server/db/schema';
 import { hashPassword } from '$lib/server/utils';
 import test, { expect } from '@playwright/test';
 import { eq } from 'drizzle-orm';
@@ -28,6 +28,7 @@ test('signs in correctly', async ({ page }) => {
 	await page.waitForURL('http://localhost:5173/');
 
 	await db.delete(userTable).where(eq(userTable.id, userId));
+	await db.delete(sessionTable).where(eq(sessionTable.email, userEmail));
 });
 
 test('invalid email', async ({ page }) => {
