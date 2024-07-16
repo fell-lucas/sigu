@@ -39,4 +39,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: fell-lucas/setup-pnpm-action@main
+      - run: curl -sSfL https://get.tur.so/install.sh | bash
+      - run: echo "$HOME/.turso" >> $GITHUB_PATH
       - run: pnpm run test:integration
